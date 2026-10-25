@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Pinteless</title>
+<style>
+  :root { color-scheme: light dark; --accent: #e60023; }
+  body { margin: 0; width: 320px; font: 13px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { padding: 12px 14px 14px; }
+  h1 { font-size: 15px; margin: 0 0 10px; }
+  #toggle { width: 100%; padding: 9px; border: 0; border-radius: 8px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+  #toggle:disabled { opacity: .5; cursor: default; }
+  #hint { margin: 6px 0 12px; color: GrayText; font-size: 12px; }
+  fieldset { border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 8px; margin: 0 0 10px; padding: 8px 10px 4px; }
+  legend { padding: 0 4px; font-weight: 600; }
+  label.row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 8px; }
+  label.row span.v { min-width: 44px; text-align: right; font-variant-numeric: tabular-nums; color: GrayText; }
+  input[type=range] { flex: 1; accent-color: var(--accent); }
+  select { flex: 1; max-width: 170px; font: inherit; }
+  input[type=checkbox] { accent-color: var(--accent); }
+  .hidden { display: none !important; }
+  .muted { color: GrayText; font-size: 12px; }
+  #reset { background: none; border: 0; color: GrayText; text-decoration: underline; cursor: pointer; font: inherit; padding: 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pinteless</h1>
+  <button id="toggle">Abrir galeria nesta aba</button>
+  <div id="hint">Atalho na página: <b>Alt+Shift+G</b> · na galeria: <b>/</b> pesquisa, <b>+</b>/<b>−</b> tamanho, <b>S</b> salva na pasta ativa, <b>Esc</b> fecha</div>
+
+  <fieldset>
+    <legend>Layout</legend>
+    <label class="row">Modo
+      <select data-key="mode">
+        <option value="height">Altura alvo da linha</option>
+        <option value="count">N imagens por linha</option>
+      </select>
+    </label>
+    <label class="row" data-show="height">Altura da linha
+      <input type="range" data-key="rowHeight" min="80" max="1200" step="10"><span class="v"></span>
+    </label>
+    <label class="row" data-show="count">Imagens por linha
+      <input type="range" data-key="perRow" min="1" max="12" step="1"><span class="v"></span>
+    </label>
+    <label class="row">Espaçamento
+      <input type="range" data-key="gap" min="0" max="40" step="1"><span class="v"></span>
+    </label>
+    <label class="row">Altura máx. da linha
+      <input type="range" data-key="maxRowVh" min="20" max="300" step="5"><span class="v"></span>
+    </label>
+    <label class="row">Última linha
+      <select data-key="lastRow">
+        <option value="left">Sem esticar (à esquerda)</option>
+        <option value="justify">Preencher a largura</option>
+        <option value="hide">Ocultar se incompleta</option>
+      </select>
+    </label>
+    <label class="row">Cantos
+      <input type="range" data-key="radius" min="0" max="24" step="1"><span class="v"></span>
+    </label>
+    <label class="row">Fundo
+      <input type="color" data-key="background">
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Conteúdo</legend>
+    <label class="row">Qualidade das miniaturas
+      <select data-key="thumbQuality">
+        <option value="auto">Automática (mais leve)</option>
+        <option value="474x">Média (474px)</option>
+        <option value="736x">Alta (736px)</option>
+        <option value="originals">Original</option>
+      </select>
+    </label>
+    <label class="row">Ao clicar
+      <select data-key="clickAction">
+        <option value="lightbox">Ampliar + menu de pasta</option>
+        <option value="pin">Abrir o pin</option>
+        <option value="newtab">Abrir o pin em nova aba</option>
+      </select>
+    </label>
+    <label class="row">Ocultar anúncios (promovidos) <input type="checkbox" data-key="hideAds"></label>
+    <label class="row">Ocultar vídeos <input type="checkbox" data-key="hideVideos"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Geral</legend>
+    <label class="row">Abrir automaticamente no Pinterest <input type="checkbox" data-key="autoOpen"></label>
+    <label class="row">Mostrar botão flutuante <input type="checkbox" data-key="showButton"></label>
+  </fieldset>
+
+  <button id="reset">Restaurar padrões</button>
+</main>
+<script src="defaults.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
