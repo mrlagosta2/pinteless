@@ -1,0 +1,72 @@
+{
+  "name": "pinteless-desktop",
+  "productName": "Pinteless",
+  "version": "1.3.0",
+  "description": "Pinterest, minus the clutter — desktop app.",
+  "main": "main.js",
+  "author": "mrlagosta2",
+  "license": "MIT",
+  "homepage": "https://github.com/mrlagosta2/pinteless",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --x64",
+    "dist:portable": "electron-builder --win portable --x64",
+    "dist:linux": "electron-builder --linux AppImage"
+  },
+  "devDependencies": {
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.mrlagosta2.pinteless",
+    "productName": "Pinteless",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "paths.js",
+      "preload.js",
+      "settings-preload.js",
+      "build/icon.png",
+      {
+        "from": "..",
+        "to": "ext",
+        "filter": [
+          "page.js",
+          "content.js",
+          "content.css",
+          "defaults.js",
+          "popup.html",
+          "popup.js",
+          "icons/**"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "artifactName": "Pinteless-${version}-${os}-${arch}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Pinteless-${version}-portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Pinteless",
+      "artifactName": "Pinteless-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "category": "Graphics"
+    }
+  }
+}

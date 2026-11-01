@@ -17,3 +17,6 @@ var PJR_DEFAULTS = {
 };
 
 var PJR_API = typeof browser !== 'undefined' ? browser : chrome;
+
+// No app desktop (Electron) este arquivo é carregado via require().
+if (typeof module === 'object' && module.exports) module.exports = { PJR_DEFAULTS };

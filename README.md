@@ -22,7 +22,42 @@ It also lets you save pins to a board with **one click**, so you can blast throu
 
 ![Hidden search bar](screenshots/search-bar.png)
 
-## Install
+## Windows app
+
+Pinteless also comes as a **desktop app for Windows**: a window that is just Pinterest with Pinteless built in. No browser, no extension to load. The gallery opens on its own.
+
+### Download
+
+Grab the latest `.exe` from the [Releases](https://github.com/mrlagosta2/pinteless/releases) page (or from the **Actions → Desktop (Windows)** run artifacts):
+
+- `Pinteless-Setup-x.y.z.exe`: installer, with Start menu and desktop shortcuts.
+- `Pinteless-x.y.z-portable.exe`: a single file, no install.
+
+The app isn't code signed, so Windows SmartScreen may warn the first time. Click **More info → Run anyway**.
+
+Log in to Pinterest inside the app once; the session is remembered.
+
+### What's different from the extension
+
+- Settings live in the menu: **Arquivo → Configurações…** (`Ctrl+,`). Press `Alt` to show the menu bar.
+- `Alt+←` / `Alt+→` (or the mouse side buttons) go back / forward, `F5` reloads, `F11` is full screen, `Ctrl+N` opens a new window.
+- Right-click an image to save it to your PC, copy it, or open it in the browser.
+- Links that leave Pinterest open in your normal browser.
+
+### Build it yourself
+
+You need [Node.js](https://nodejs.org) 20+.
+
+```bash
+cd desktop
+npm install
+npm start          # run it
+npm run dist       # build the Windows installer + portable exe into desktop/dist
+```
+
+Build the Windows `.exe` on Windows (or push a `v*` tag and let GitHub Actions do it). The desktop app reuses the extension files (`page.js`, `content.js`, `content.css`, `popup.html`) as they are. `desktop/preload.js` stands in for the browser extension APIs.
+
+## Install (browser extension)
 
 There's no store listing yet, so you load it manually. It takes about a minute.
 
