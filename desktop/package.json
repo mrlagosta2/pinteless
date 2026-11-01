@@ -7,6 +7,10 @@
   "author": "mrlagosta2",
   "license": "MIT",
   "homepage": "https://github.com/mrlagosta2/pinteless",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrlagosta2/pinteless.git"
+  },
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder --win --x64",
@@ -47,8 +51,18 @@
     "win": {
       "icon": "build/icon.ico",
       "target": [
-        { "target": "nsis", "arch": ["x64"] },
-        { "target": "portable", "arch": ["x64"] }
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "artifactName": "Pinteless-${version}-${os}-${arch}.${ext}"
     },
